@@ -34,6 +34,7 @@ class FirebaseGoogleAuthenticator implements Authenticator {
     return FirebaseAuth.instance
         .signInWithCredential(credential)
         .then((result) => FirebaseProvider.convert(result.user))
+        .then((user) => Identity.of(context).user = user)
         .catchError(Identity.of(context).error);
   }
 }
