@@ -1,3 +1,7 @@
+## [0.1.0] - v0.1.0
+
+* Upgrade `identity_firebase`
+
 ## [0.0.2] - v0.0.2
 
 * Fix log in issue

@@ -21,7 +21,7 @@ class FirebaseGoogleAuthenticator implements Authenticator {
     final GoogleSignInAccount googleUser = await googleSignIn.signIn();
     if (googleUser == null) {
       return Identity.of(context)
-          .error(Exception('There was an error. Please try again.'));
+          .error('There was an error. Please try again.');
     }
 
     final GoogleSignInAuthentication googleAuth =
