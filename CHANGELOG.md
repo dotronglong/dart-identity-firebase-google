@@ -1,3 +1,9 @@
+## [0.1.1] - v0.1.1
+
+* Use `google_sign_in: ^4.1.1`
+* Add message when processing
+* Add scopes
+
 ## [0.1.0] - v0.1.0
 
 * Upgrade `identity_firebase`

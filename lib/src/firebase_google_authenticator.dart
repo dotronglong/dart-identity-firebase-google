@@ -5,7 +5,11 @@ import 'package:identity/identity.dart';
 import 'package:identity_firebase/identity_firebase.dart';
 import 'package:sso/sso.dart';
 
-class FirebaseGoogleAuthenticator implements Authenticator {
+class FirebaseGoogleAuthenticator with WillNotify implements Authenticator {
+  final List<String> scopes;
+
+  FirebaseGoogleAuthenticator({this.scopes = const ["email"]});
+
   @override
   WidgetBuilder get action => (context) => ActionButton(
       onPressed: () => authenticate(context),
@@ -17,7 +21,7 @@ class FirebaseGoogleAuthenticator implements Authenticator {
 
   @override
   Future<void> authenticate(BuildContext context, [Map parameters]) async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignIn googleSignIn = GoogleSignIn(scopes: scopes);
     final GoogleSignInAccount googleUser = await googleSignIn.signIn();
     if (googleUser == null) {
       return Identity.of(context)
@@ -31,6 +35,7 @@ class FirebaseGoogleAuthenticator implements Authenticator {
       idToken: googleAuth.idToken,
     );
 
+    notify(context, "Processing ...");
     return FirebaseAuth.instance
         .signInWithCredential(credential)
         .then((result) => FirebaseProvider.convert(result.user))
