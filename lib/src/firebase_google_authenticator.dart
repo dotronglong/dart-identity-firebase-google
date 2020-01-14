@@ -2,10 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:identity/identity.dart';
-import 'package:identity_firebase/identity_firebase.dart';
 import 'package:sso/sso.dart';
 
-class FirebaseGoogleAuthenticator with WillNotify implements Authenticator {
+class FirebaseGoogleAuthenticator
+    with WillNotify, WillConvertUser
+    implements Authenticator {
   final List<String> scopes;
 
   FirebaseGoogleAuthenticator({this.scopes = const ["email"]});
@@ -38,7 +39,7 @@ class FirebaseGoogleAuthenticator with WillNotify implements Authenticator {
     notify(context, "Processing ...");
     return FirebaseAuth.instance
         .signInWithCredential(credential)
-        .then((result) => FirebaseProvider.convert(result.user))
+        .then((result) => convert(result.user))
         .then((user) => Identity.of(context).user = user)
         .catchError(Identity.of(context).error);
   }

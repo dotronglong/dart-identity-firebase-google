@@ -1,3 +1,7 @@
+## [0.2.0] - v0.2.0
+
+* Upgrade `identity_firebase`
+
 ## [0.1.1] - v0.1.1
 
 * Use `google_sign_in: ^4.1.1`

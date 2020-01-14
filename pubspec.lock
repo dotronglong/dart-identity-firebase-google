@@ -162,14 +162,14 @@ packages:
       name: identity
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.2"
+    version: "0.2.0"
   identity_firebase:
     dependency: "direct main"
     description:
       name: identity_firebase
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1"
+    version: "0.2.0"
   image:
     dependency: transitive
     description:
@@ -244,7 +244,7 @@ packages:
       name: sso
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.2"
+    version: "0.2.0"
   stack_trace:
     dependency: transitive
     description:
