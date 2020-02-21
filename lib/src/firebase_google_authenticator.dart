@@ -14,11 +14,11 @@ class FirebaseGoogleAuthenticator
   @override
   WidgetBuilder get action => (context) => ActionButton(
       onPressed: () => authenticate(context),
-      color: Color.fromRGBO(234, 67, 53, 1),
-      textColor: Colors.white,
+      color: Colors.white,
+      textColor: Colors.black.withOpacity(0.54),
       icon: Image.asset("images/google.png",
           package: "identity_firebase_google", width: 24, height: 24),
-      text: "Sign In with Google");
+      text: "Sign in with Google");
 
   @override
   Future<void> authenticate(BuildContext context, [Map parameters]) async {
