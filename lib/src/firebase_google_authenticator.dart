@@ -45,8 +45,8 @@ class FirebaseGoogleAuthenticator
           .catchError(Identity.of(context).error);
     } catch (e) {
       print(e);
-      return Identity.of(context)
-          .error('There was an error. Please try again.');
+      return Identity.of(context).error(
+          'There was an error. Please make sure Google Play service is up to date and try again.');
     }
   }
 }

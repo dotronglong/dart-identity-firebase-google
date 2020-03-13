@@ -1,6 +1,6 @@
 name: identity_firebase_google
 description: Google SSO by Firebase for Identity package
-version: 0.2.3
+version: 0.2.3+1
 author: Long Do <me@dotronglong.com>
 homepage: https://github.com/dotronglong/dart-identity-firebase-google
 

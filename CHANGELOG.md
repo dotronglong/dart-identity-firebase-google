@@ -1,3 +1,7 @@
+## 0.2.3+1
+
+* Update error's message
+
 ## 0.2.3
 
 * Improve error catching
