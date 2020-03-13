@@ -1,3 +1,7 @@
+## 0.2.3
+
+* Improve error catching
+
 ## 0.2.2
 
 * Upgrade `identity: ^0.2.2`

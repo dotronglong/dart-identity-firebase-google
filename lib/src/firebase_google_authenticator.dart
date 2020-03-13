@@ -22,25 +22,31 @@ class FirebaseGoogleAuthenticator
 
   @override
   Future<void> authenticate(BuildContext context, [Map parameters]) async {
-    final GoogleSignIn googleSignIn = GoogleSignIn(scopes: scopes);
-    final GoogleSignInAccount googleUser = await googleSignIn.signIn();
-    if (googleUser == null) {
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn(scopes: scopes);
+      final GoogleSignInAccount googleUser = await googleSignIn.signIn();
+      if (googleUser == null) {
+        return Identity.of(context)
+            .error('There was an error. Please try again.');
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      notify(context, "Processing ...");
+      return FirebaseAuth.instance
+          .signInWithCredential(credential)
+          .then((result) => convert(result.user))
+          .then((user) => Identity.of(context).user = user)
+          .catchError(Identity.of(context).error);
+    } catch (e) {
+      print(e);
       return Identity.of(context)
           .error('There was an error. Please try again.');
     }
-
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    notify(context, "Processing ...");
-    return FirebaseAuth.instance
-        .signInWithCredential(credential)
-        .then((result) => convert(result.user))
-        .then((user) => Identity.of(context).user = user)
-        .catchError(Identity.of(context).error);
   }
 }
