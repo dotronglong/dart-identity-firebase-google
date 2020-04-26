@@ -1,3 +1,7 @@
+## 0.3.0
+
+- Upgrade `identity`
+
 ## 0.2.3+1
 
 * Update error's message
